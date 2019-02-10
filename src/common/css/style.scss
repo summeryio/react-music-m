@@ -2,6 +2,11 @@
    v2.0 | 20110126
    License: none (public domain)
 */
+* {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box; 
+}
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -18,7 +23,6 @@ time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
 }
@@ -53,6 +57,9 @@ a {
 a, a:focus {
 	outline: none;
 }
+a:active {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
 input, a {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-appearance: none;
@@ -69,7 +76,7 @@ html, body {
 }
 body {
 	font-family: 'Microsoft YaHei', "SF Pro SC","SF Pro Display","SF Pro Icons","PingFang SC","Helvetica Neue","Helvetica","Arial",sans-serif;
-    font-size: .3rem;
+	font-size: .3rem;
     -webkit-text-size-adjust: none;
 }
 button, input {
@@ -87,3 +94,292 @@ button, input {
 }
 .clearfix:after {content:"."; display:block; height:0; visibility:hidden; clear:both; }
 .clearfix { *zoom:1; }
+
+
+// =============模块=============
+#header {
+	position: relative;
+	height: .96rem;
+	line-height: .96rem;
+	color: #fff;
+	background-color: #e9203d;
+	
+	i {
+		position: absolute;
+		left: .2rem;
+		top: .18rem;
+		font-size: .64rem;
+	}
+	p {
+		text-align: center;
+	}
+}
+#loading {
+	width: 100%;
+	height: .4rem;
+	line-height: .4rem;
+	margin: .4rem 0;
+	text-align: center;
+	color: #999;
+
+	i {
+		display: inline-block;
+		width: .4rem;
+		height: .4rem;
+		margin-right: 2px;
+		background: url(../images/loading.gif) no-repeat;
+		background-size: cover;
+		background-position: left center;
+		vertical-align: top;
+	}
+}
+.scroll-tip {
+	width: 100%;
+	height: .4rem;
+	line-height: .4rem;
+	margin: .4rem 0;
+	text-align: center;
+	color: #999;
+}
+// =============模块=============
+
+
+// =============首页=============
+// 个性推荐
+#home_header {
+	height: .96rem;
+	background-color: #e9203d;
+}
+#home_nav {
+	overflow: hidden;
+
+	li {
+		float: left;
+		width: 20%;
+		height: .88rem;
+		margin: 0 2.5%;
+		line-height: .88rem;
+		text-align: center;
+		
+		&.active {
+			box-shadow: inset 0px -2px 0px #e9203d;
+		}
+	}
+	a {
+		display: block;
+	}
+}
+#home {
+	.banner {
+		height: 3rem;
+
+		img {
+			width: 100%;
+			height: 3rem;
+		}
+		.swiper-pagination-bullet-active {
+			background-color: #e9203d;
+		}
+	}
+	.home-list {
+		margin: 0 .08rem;
+		
+		.title {
+			height: .92rem;
+			line-height: .92rem;
+			margin: .08rem;
+			border-bottom: 1px solid #d9d9d9;
+			
+			span {
+				display: inline-block;
+			}
+			i {
+				display: inline-block;
+				font-size: .48rem;
+				vertical-align: -.09rem;
+			}
+		}
+		.list {
+			overflow: hidden;
+			
+			li {
+				position: relative;
+				float: left;
+				width: 33.33333%;
+				padding: 4px;
+				margin-bottom: .2rem;
+				box-sizing: border-box;
+			}
+			.pic {
+				position: relative;
+				img {
+					max-width: 100%;
+					height: 2.34rem;
+				}
+				.count {
+					position: absolute;
+					left: 0;
+					top: .04rem;
+					width: 100%;
+					height: .04rem;
+					text-align: right;
+					color: #fff;
+					font-size: .24rem;
+					
+					i {
+						margin-right: .04rem;
+					}
+					em {}
+				}
+				.mask {
+					position: absolute;
+					left: 0;
+					top: 0;
+					width: 100%;
+					height: 100%;
+				}
+			}
+			.desc {
+				overflow: hidden;
+				height: .7rem;
+				padding-top: .1rem;
+				line-height: .32rem;
+				font-size: .26rem;
+			}
+		}
+	}
+}
+
+// 新歌
+#new_song {
+	.list {
+		li {
+			margin: 0 .2rem;
+			padding: .3rem 0;
+			border-bottom: 1px solid #d9d9d9;
+			font-size: .28rem;
+		}
+		a {
+			display: block;
+			max-width: 90%;
+			line-height: .36rem;
+		}
+	}
+}
+
+// 榜单
+#rank {
+	.list {
+		li {
+			
+		}
+		a {
+			display: flex;
+			align-items: center;
+			padding: 10px 0;
+			margin: 0 10px;
+			border-bottom: 1px solid #d9d9d9;
+		}
+		img {
+			display: block;
+			width: 2rem;
+		}
+		p {
+			flex: 1;
+			padding-left: .2rem;
+		}
+		i {
+			font-size: .64rem;
+			color: #ddd;
+		}
+	}
+}
+// 歌手
+#singer {
+	.category {
+		padding: .2rem;
+		
+		li {
+			margin-top: -1px;
+			border: 1px solid #d9d9d9;
+		}
+		a {
+			display: flex;
+			padding: .3rem;
+			line-height: .4rem;
+			justify-content: space-between;
+		}
+		span {}
+		i {
+			font-size: .4rem;
+			color: #b0b0b0;
+		}
+		.mb {
+			margin-bottom: .4rem;
+		}
+	}
+}
+// =============首页=============
+
+
+// =============歌单=============
+#playlist {
+	.list {
+		overflow: hidden;
+		
+		li {
+			max-height: 3.2rem;
+			position: relative;
+			float: left;
+			width: 33.33333%;
+			padding: 4px;
+			margin-bottom: .2rem;
+			box-sizing: border-box;
+		}
+		.pic {
+			position: relative;
+			img {
+				max-width: 100%;
+				height: 2.34rem;
+			}
+			.count {
+				position: absolute;
+				left: 0;
+				top: .04rem;
+				width: 100%;
+				height: .04rem;
+				text-align: right;
+				color: #fff;
+				font-size: .24rem;
+				
+				i {
+					margin-right: .04rem;
+				}
+				em {}
+			}
+			.mask {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+			}
+		}
+		.desc {
+			overflow: hidden;
+			height: .7rem;
+			padding-top: .1rem;
+			line-height: .32rem;
+			font-size: .26rem;
+		}
+	}
+}
+.scroll_wrapper {
+	// position: fixed;
+	// left: 0;
+	// top: .96rem;
+	// bottom: 0;
+	// height: calc(100% - 0.96rem);
+	// overflow: hidden;
+}
+// =============歌单=============

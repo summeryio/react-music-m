@@ -7,6 +7,7 @@ import App from './App'
 
 
 import 'common/css/style.scss'
+import 'common/css/icon-font.css'
 
 const store = configureStore()
 
