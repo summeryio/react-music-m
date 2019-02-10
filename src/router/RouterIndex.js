@@ -9,6 +9,7 @@ import HomeRank from 'components/home/HomeRank'
 import HomeSinger from 'components/home/HomeSinger'
 
 import PlayList from 'components/playlist/PlayList'
+import Album from 'components/album/Album'
 
 export default class RouterIndex extends Component {
   render() {
@@ -23,6 +24,7 @@ export default class RouterIndex extends Component {
                     <Route path="/singer" component={HomeSinger} />
 
                     <Route path="/playlist" component={PlayList} />
+                    <Route path="/album" component={Album} />
                 </Switch>
             </AutomaticToTop>
         </Router>

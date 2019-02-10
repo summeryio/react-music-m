@@ -5,6 +5,8 @@ const history = creatHistory()
 
 export default class Header extends Component {
     render() {
+        let {title} = this.props
+        
         return (
             <div id="header">
                 <i 
@@ -13,7 +15,7 @@ export default class Header extends Component {
                         history.goBack()
                     }}
                 ></i>
-                <p>精选歌单</p>
+                <p>{title}</p>
             </div>
         )
     }

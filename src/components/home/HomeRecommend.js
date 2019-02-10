@@ -90,10 +90,10 @@ class HomeRecommend extends Component {
                 </div>
                 <div className="albumlist home-list">
                     <div className="title">
-                        <a href="#">
+                        <Link to="/album">
                             <span>新碟上架</span>
                             <i className="icon-keyboard_arrow_right"></i>
-                        </a>
+                        </Link>
                     </div>
                     <ul className="list">
                         {

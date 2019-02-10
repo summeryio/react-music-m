@@ -19,8 +19,6 @@ class HomeSong extends Component {
     render() {
         let {songs} = this.props.home
 
-        console.log(songs);
-        
         return (
             <Home {...{
                 id: 'new_song',

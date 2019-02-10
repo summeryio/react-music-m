@@ -6,8 +6,9 @@ import configureStore, {history} from 'reduxes/configureStore'
 import App from './App'
 
 
-import 'common/css/style.scss'
 import 'common/css/icon-font.css'
+import 'common/css/style.scss'
+
 
 const store = configureStore()
 

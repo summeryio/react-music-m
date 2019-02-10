@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-import * as actions from './PlayListRedux'
+import * as actions from './AlbumRedux'
 import Header from 'common/component/Header'
 
 import Loading from 'common/component/Loading'
 
-class PlayList extends Component {
+class Album extends Component {
     constructor(props) {
         super(props)
 
@@ -79,7 +79,7 @@ class PlayList extends Component {
     }
 
     loadData() {
-        let {getPlayList} = this.props.playlistAction
+        let {getAlbumData} = this.props.albumAction
 
         // console.log("数据的高---------", this.refs.onPullUp.clientHeight);
         // console.log("滚动的高---------", document.documentElement.scrollTop);
@@ -94,20 +94,20 @@ class PlayList extends Component {
                 isFoot: false,
                 page: this.state.page + 1
             }, () => {
-                getPlayList('hot', '全部', this.state.page)
+                getAlbumData(this.state.page)
             });
         }
     }
 
     componentWillReceiveProps(nextProps) {
-        let {playListData, playlists} = this.props.playlist
-        let more = playListData.more || true 
+        let {albumData, albums} = this.props.album
+        let more = albumData.more || true 
 
         if (!more) {
             this.setState({finished: true})
         }
 
-        if (playlists.length !== nextProps.playlist.playlists.length) {
+        if (albums.length !== nextProps.album.albums.length) {
             this.setState({
                 isFoot: true
             })
@@ -115,35 +115,29 @@ class PlayList extends Component {
     }
     
     componentDidMount() {
-        let {clearPlaylist, getPlayList} = this.props.playlistAction
+        let {clearPlaylist, getAlbumData} = this.props.albumAction
 
         clearPlaylist()
-        getPlayList('hot', '全部', this.state.page)
+        getAlbumData(this.state.page)
     }
     
     render() {
-        let {playListData, playlists} = this.props.playlist
-        let loaded = playListData.code === 200
+        let {albumData, albums} = this.props.album
+        let loaded = albumData.code === 200
         let {finished, isFoot} = this.state
 
         return (
-            <div id="playlist">
-                <Header title="精选歌单" />
+            <div id="album">
+                <Header title="新碟上架" />
                 <div className="scroll_wrapper" ref="onPullUp" onTouchStart={this.touchStart.bind(this)} onTouchEnd={this.touchEnd.bind(this)}>
                     <ul className="list">
                         {
                             loaded
-                            ? playlists.map((play, i) => {
-                                let playCount = play.playCount > 100000 ? parseInt(play.playCount / 10000) + '万' : parseInt(play.playCount)
-                                
+                            ? albums.map((play, i) => {
                                 return (
                                     <li key={play.id}>
                                         <div className="pic">
-                                            <img src={play.coverImgUrl + '?param=400y400'} />
-                                            <span className="count">
-                                                <i className="icon-headset"></i>
-                                                <em>{playCount}</em>
-                                            </span>
+                                            <img src={play.picUrl + '?param=400y400'} />
                                             <a href="#" className="mask"></a>
                                         </div>
                                         <p className="desc">{play.name}</p>
@@ -152,7 +146,7 @@ class PlayList extends Component {
                             }) : null
                         }
                     </ul>
-                    {playlists.length && isFoot ? <p className="scroll-tip">上拉加载更多</p> : <Loading />}
+                    {albums.length && isFoot ? <p className="scroll-tip">上拉加载更多</p> : <Loading />}
                     {finished ? <p className="scroll-tip">我是有底线的</p> : null}
                 </div>
             </div>
@@ -163,16 +157,16 @@ class PlayList extends Component {
 export default connect(
     state => {
         let {
-            playlist
+            album
         } = state
 
         return {
-            playlist
+            album
         }
     },
     dispatch => {
         return {
-            playlistAction: bindActionCreators({...actions}, dispatch)
+            albumAction: bindActionCreators({...actions}, dispatch)
         }
     }
-)(PlayList)
+)(Album)

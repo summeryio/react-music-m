@@ -19,8 +19,6 @@ class HomeRank extends Component {
     render() {
         let {ranks} = this.props.home
 
-        console.log(ranks);
-        
         return (
             <Home {...{
                 id: 'rank',

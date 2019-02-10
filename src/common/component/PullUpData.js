@@ -1,13 +1,8 @@
 import React, { Component } from 'react'
-import {Link} from 'react-router-dom'
-import {bindActionCreators} from 'redux'
-import {connect} from 'react-redux'
-import * as actions from './PlayListRedux'
-import Header from 'common/component/Header'
 
 import Loading from 'common/component/Loading'
 
-class PlayList extends Component {
+export default class PullUpData extends Component {
     constructor(props) {
         super(props)
 
@@ -64,7 +59,6 @@ class PlayList extends Component {
             return result;
         }
         let angle = this.getAngle(angx, angy);
-        
         if (angle >= -135 && angle <= -45) {
             result = 1;
         } else if (angle > 45 && angle < 135) {
@@ -88,7 +82,7 @@ class PlayList extends Component {
         let dataHeight = this.refs.onPullUp.clientHeight;
         let scrollHeight = document.body.scrollTop || document.documentElement.scrollTop;
         let screenHeight = document.documentElement.clientHeight;
-        const h = 10;//自定义距离底部多少时concat数据
+        const h = 150;//自定义距离底部多少时concat数据
         if (dataHeight - scrollHeight - h < screenHeight && this.state.isFoot) {
             this.setState({
                 isFoot: false,
@@ -114,65 +108,15 @@ class PlayList extends Component {
         }
     }
     
-    componentDidMount() {
-        let {clearPlaylist, getPlayList} = this.props.playlistAction
-
-        clearPlaylist()
-        getPlayList('hot', '全部', this.state.page)
-    }
-    
     render() {
-        let {playListData, playlists} = this.props.playlist
-        let loaded = playListData.code === 200
         let {finished, isFoot} = this.state
 
         return (
-            <div id="playlist">
-                <Header title="精选歌单" />
-                <div className="scroll_wrapper" ref="onPullUp" onTouchStart={this.touchStart.bind(this)} onTouchEnd={this.touchEnd.bind(this)}>
-                    <ul className="list">
-                        {
-                            loaded
-                            ? playlists.map((play, i) => {
-                                let playCount = play.playCount > 100000 ? parseInt(play.playCount / 10000) + '万' : parseInt(play.playCount)
-                                
-                                return (
-                                    <li key={play.id}>
-                                        <div className="pic">
-                                            <img src={play.coverImgUrl + '?param=400y400'} />
-                                            <span className="count">
-                                                <i className="icon-headset"></i>
-                                                <em>{playCount}</em>
-                                            </span>
-                                            <a href="#" className="mask"></a>
-                                        </div>
-                                        <p className="desc">{play.name}</p>
-                                    </li>
-                                )
-                            }) : null
-                        }
-                    </ul>
-                    {playlists.length && isFoot ? <p className="scroll-tip">上拉加载更多</p> : <Loading />}
-                    {finished ? <p className="scroll-tip">我是有底线的</p> : null}
-                </div>
+            <div className="scroll_wrapper" ref="onPullUp" onTouchStart={this.touchStart.bind(this)} onTouchEnd={this.touchEnd.bind(this)}>
+                {this.props.children}
+                {playlists.length && isFoot ? <p className="scroll-tip">上拉加载更多</p> : <Loading />}
+                {finished ? <p className="scroll-tip">我是有底线的</p> : null}
             </div>
         )
     }
 }
-
-export default connect(
-    state => {
-        let {
-            playlist
-        } = state
-
-        return {
-            playlist
-        }
-    },
-    dispatch => {
-        return {
-            playlistAction: bindActionCreators({...actions}, dispatch)
-        }
-    }
-)(PlayList)
