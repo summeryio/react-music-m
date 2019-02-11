@@ -5,13 +5,14 @@ import {connect} from 'react-redux'
 import * as actions from './SingerRedux'
 import Header from 'common/component/Header'
 
-import {formatDateYMD} from 'common/js/util'
+import Loading from 'common/component/Loading'
 
 class SingerDetail extends Component {
     componentDidMount() {
-        let {getArtistData} = this.props.singerAction
+        let {getArtistData, clearArtistData} = this.props.singerAction
         let {id} = this.props.match.params
 
+        clearArtistData()
         getArtistData(id)
     }
     
@@ -24,30 +25,37 @@ class SingerDetail extends Component {
         return (
             <div id="singer_detail">
                 <Header title={artist.name} />
-                <div className="header">
-                    <div className="cont"><img src={artist.picUrl && artist.picUrl + '?param=1024y520'} /></div>
-                    <div className="play">
-                        <span>播放全部</span>
-                        <i className="icon-playlist_add"></i>
-                    </div>
-                </div>
-                <ul className="song-list">
-                    {
-                        loaded ? hotSongs.map(song => {
-                            return (
-                                <li key={song.id}><a href="#">
-                                    {
-                                        song.ar.map((artist, a) => {
-                                            return (
-                                                <span key={artist.id + a}>{artist.name}{a === song.ar.length - 1 ? '' : '、'}</span>
-                                            )
-                                        })
-                                    } - {song.name}
-                                </a>{song.alia.length ? <p>{song.alia}</p> : null}</li>
-                            )
-                        }) : null
-                    }
-                </ul>
+                {
+                    loaded ? (
+                        <div>
+                            <div className="header">
+                            <div className="cont"><img src={artist.picUrl + '?param=1024y520'} /></div>
+                            <div className="play">
+                                <span>播放全部</span>
+                                <i className="icon-playlist_add"></i>
+                            </div>
+                        </div>
+                        <ul className="song-list">
+                            {
+                                hotSongs.map(song => {
+                                    return (
+                                        <li key={song.id}><a href="#">
+                                            {
+                                                song.ar.map((artist, a) => {
+                                                    return (
+                                                        <span key={artist.id + a}>{artist.name}{a === song.ar.length - 1 ? '' : '、'}</span>
+                                                    )
+                                                })
+                                            } - {song.name}
+                                        </a>{song.alia.length ? <p>{song.alia}</p> : null}</li>
+                                    )
+                                })
+                            }
+                        </ul>
+                        </div>
+                    ) : <Loading full={true}/>
+                }
+                
             </div>
         )
     }

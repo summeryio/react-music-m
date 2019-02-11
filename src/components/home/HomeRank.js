@@ -5,6 +5,8 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import * as actions from './HomeRedux'
 
+import Loading from 'common/component/Loading'
+
 class HomeRank extends Component {
     constructor(props) {
         super(props)
@@ -24,19 +26,23 @@ class HomeRank extends Component {
                 id: 'rank',
                 nav: 'rank'
             }}>
-                <ul className="list">
-                    {
-                        ranks.length ? ranks.map(rank => {
-                            return (
-                                <li key={rank.id}><Link to={`/playlist-detail/${rank.id}`}>
-                                    <img src={rank.coverImgUrl + '?param=400y400'} />
-                                    <p>{rank.name}</p>
-                                    <i className="icon-keyboard_arrow_right"></i>
-                                </Link></li>
-                            )
-                        }) : null
-                    }
-                </ul>
+                {
+                    ranks.length ? (
+                        <ul className="list">
+                        {
+                            ranks.map(rank => {
+                                return (
+                                    <li key={rank.id}><Link to={`/playlist-detail/${rank.id}`}>
+                                        <img src={rank.coverImgUrl + '?param=400y400'} />
+                                        <p>{rank.name}</p>
+                                        <i className="icon-keyboard_arrow_right"></i>
+                                    </Link></li>
+                                )
+                            })
+                        }
+                    </ul>
+                    ) : <Loading full={true}/>
+                }
             </Home>
         )
     }

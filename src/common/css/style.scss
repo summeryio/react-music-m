@@ -2,11 +2,6 @@
    v2.0 | 20110126
    License: none (public domain)
 */
-* {
-	box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box; 
-}
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -97,23 +92,39 @@ button, input {
 
 
 // =============模块=============
-#header {
-	height: .8rem;
-	line-height: .8rem;
+#header_title {
+	display: flex;
+	align-items: center;
+	height: .9rem;
+	line-height: .9rem;
 	color: #fff;
 	background-color: #e9203d;
 	
-	i {
-		position: absolute;
-		left: .2rem;
-		top: .1rem;
+	i.icon-keyboard_arrow_left {
 		font-size: .64rem;
 	}
+	.icon-home {
+		display: block;
+		width: .4rem;
+		height: .4rem;
+		margin-right: .2rem;
+		img {
+			max-width: 100%;
+		}
+	}
 	p {
+		flex: 1;
 		text-align: center;
 	}
 }
 #loading {
+	&.full {
+		height: 100vh;
+		display: flex;
+		margin-top: 2rem;
+		justify-content: center;
+	}
+	
 	width: 100%;
 	height: .4rem;
 	line-height: .4rem;
@@ -263,7 +274,7 @@ button, input {
 			}
 			.desc {
 				overflow: hidden;
-				height: .7rem;
+				height: .6rem;
 				padding-top: .1rem;
 				line-height: .32rem;
 				font-size: .26rem;
@@ -335,19 +346,25 @@ button, input {
 		overflow: hidden;
 		
 		li {
-			max-height: 3.2rem;
 			position: relative;
 			float: left;
-			width: 33.33333%;
-			padding: 4px;
-			margin-bottom: .2rem;
+			width: 50%;
+			padding-bottom: 4px;
+			margin-bottom: .1rem;
 			box-sizing: border-box;
+
+			&:nth-child(2n) {
+				padding-left: 2px;
+			}
+			&:nth-child(2n + 1) {
+				padding-right: 2px;
+			}
 		}
 		.pic {
 			position: relative;
 			img {
 				max-width: 100%;
-				height: 2.34rem;
+				height: 3.72rem;
 			}
 			.count {
 				position: absolute;
@@ -385,26 +402,49 @@ button, input {
 
 // =============详情页面=============
 #playlist_detail {
-	.header {
+	#header_title {
+		position: absolute;
+		z-index: 999;
+		left: 0;
+		top: 0;
 		width: 100%;
-		height: 4.2rem;
+		background-color: transparent;
+	}
+	.header {
+		position: relative;
+		width: 100%;
+		padding-top: .9rem;
 		overflow: hidden;
 
 		.bg {
-			height: 3.2rem;
-			background-repeat: no-repeat;
-			background-size: 100% auto;
-			background-position: center;
-			filter: blur(1.2rem);
-			position: relative;
+			position: absolute;
 			z-index: -1;
+			left: 0;
+			top: .9rem;
+			right: 0;
+			bottom: 0;
+			width: 100%;
+			height: 4.2rem;
+
+			i {
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				margin: -.6rem;
+				background-repeat: no-repeat;
+				background-size: cover;
+				background-position: center;
+				filter: blur(1.2rem);
+			}
 		}
 		.cont {
 			display: flex;
 			align-items: center;
 			height: 3.2rem;
-			margin-top: -3.2rem;
 			padding: .2rem;
+			box-sizing: border-box;
 
 			img {
 				display: block;
@@ -428,6 +468,7 @@ button, input {
 			justify-content: space-between;
 			border-bottom: 1px solid #e9203d;
 			color: #e9203d;
+			box-sizing: border-box;
 
 			i {
 				font-size: .48rem;
@@ -465,7 +506,6 @@ button, input {
 }
 #singer_detail {
 	.cont {
-		height: 5.2rem;
 	}
 	.play {
 		display: flex;
@@ -480,8 +520,7 @@ button, input {
 			font-size: .48rem;
 		}
 	}
-	img {
+	.header img {
 		width: 100%;
-		height: 5.2rem;
 	}
 }

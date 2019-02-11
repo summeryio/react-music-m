@@ -5,13 +5,15 @@ import {connect} from 'react-redux'
 import * as actions from './DetailRedux'
 import Header from 'common/component/Header'
 
+import Loading from 'common/component/Loading'
 import {formatDateYMD} from 'common/js/util'
 
 class PlaylistDetail extends Component {
     componentDidMount() {
-        let {getPlayListDetail} = this.props.detailAction
+        let {getPlayListDetail, clearData} = this.props.detailAction
         let {id} = this.props.match.params
 
+        clearData()
         getPlayListDetail(id)
     }
     
@@ -23,38 +25,45 @@ class PlaylistDetail extends Component {
         return (
             <div id="playlist_detail">
                 <Header title="歌单" />
-                <div className="header">
-                    <div className="bg" style={{backgroundImage: loaded && `url(${playlist.coverImgUrl})`}}></div>
-                    <div className="cont">
-                        <img src={playlist.coverImgUrl && playlist.coverImgUrl + '?param=400y400'} />
-                        <div className="info">
-                            <p>{playlist.name}</p>
-                            <p>{loaded ? playlist.creator.nickname : null}</p>
-                            <p>创建时间：{formatDateYMD(playlist.createTime)}</p>
+                {
+                    loaded ? (
+                        <div>
+                            <div className="header">
+                                <div className="bg"><i style={{backgroundImage: `url(${playlist.coverImgUrl})`}}></i></div>
+                                <div className="cont">
+                                    <img src={playlist.coverImgUrl + '?param=400y400'} />
+                                    <div className="info">
+                                        <p>{playlist.name}</p>
+                                        <p>{playlist.creator.nickname}</p>
+                                        <p>创建时间：{formatDateYMD(playlist.createTime)}</p>
+                                    </div>
+                                </div>
+                                <div className="play">
+                                    <span>播放全部</span>
+                                    <i className="icon-playlist_add"></i>
+                                </div>
+                            </div>
+                            <ul className="song-list">
+                                {
+                                    playlist.tracks.map(song => {
+                                        return (
+                                            <li key={song.id}><a href="#">
+                                                {
+                                                    song.ar.map((artist, a) => {
+                                                        return (
+                                                            <span key={artist.id + a}>{artist.name}{a === song.ar.length - 1 ? '' : '、'}</span>
+                                                        )
+                                                    })
+                                                } - {song.name}
+                                            </a>{song.alia.length ? <p>{song.alia}</p> : null}</li>
+                                        )
+                                    })
+                                }
+                            </ul>
                         </div>
-                    </div>
-                    <div className="play">
-                        <span>播放全部</span>
-                        <i className="icon-playlist_add"></i>
-                    </div>
-                </div>
-                <ul className="song-list">
-                    {
-                        loaded ? playlist.tracks.map(song => {
-                            return (
-                                <li key={song.id}><a href="#">
-                                    {
-                                        song.ar.map((artist, a) => {
-                                            return (
-                                                <span key={artist.id + a}>{artist.name}{a === song.ar.length - 1 ? '' : '、'}</span>
-                                            )
-                                        })
-                                    } - {song.name}
-                                </a>{song.alia.length ? <p>{song.alia}</p> : null}</li>
-                            )
-                        }) : null
-                    }
-                </ul>
+                    ) : <Loading full={true}/>
+                }
+                
             </div>
         )
     }

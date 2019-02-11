@@ -10,6 +10,7 @@ let initialState = {
 const GET_ALBUM_DATA = 'm-music/SingerRedux/GET_ALBUM_DATA'
 const CLEAR_PLAYLIST = 'm-music/SingerRedux/CLEAR_PLAYLIST'
 const GET_ARTIST_DATA = 'm-music/SingerRedux/GET_ARTIST_DATA'
+const CLEAR_ARTIST_DATA = 'm-music/PlaylistDetail/CLEAR_ARTIST_DATA'
 
 export const getAlbumData = (id, page) => (dispatch, getState) => {
     let {albums} = getState().singer
@@ -51,6 +52,13 @@ export const getArtistData = (id) => (dispatch, getState) => {
     })
 }
 
+export const clearArtistData = () => (dispatch, getState) => {
+    dispatch({
+        type: CLEAR_ARTIST_DATA,
+        artistData: {}
+    })
+}
+
 
 export default function singer(state = initialState, action) {
     let {
@@ -69,6 +77,9 @@ export default function singer(state = initialState, action) {
             return {...state, albums}
             break
         case GET_ARTIST_DATA:
+            return {...state, artistData}
+            break
+        case CLEAR_ARTIST_DATA:
             return {...state, artistData}
             break
 

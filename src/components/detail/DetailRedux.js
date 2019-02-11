@@ -8,6 +8,8 @@ let initialState = {
 
 const GET_PLAY_DETAIL = 'm-music/PlaylistDetail/GET_PLAY_DETAIL'
 const GET_ALBUM_DETAIL = 'm-music/PlaylistDetail/GET_ALBUM_DETAIL'
+const CLEAR_DATA = 'm-music/PlaylistDetail/CLEAR_DATA'
+
 
 export const getPlayListDetail = (id) => (dispatch, getState) => {
     axios.get(`${URL_HEADER}/playlist/detail?id=${id}`).then((res) => {
@@ -39,6 +41,14 @@ export const getAlbumDetail = (id) => (dispatch, getState) => {
     })
 }
 
+export const clearData = () => (dispatch, getState) => {
+    dispatch({
+        type: CLEAR_DATA,
+        playListDetail: {},
+        albumDetailData: {}
+    })
+}
+
 
 export default function detail(state = initialState, action) {
     let {
@@ -54,6 +64,9 @@ export default function detail(state = initialState, action) {
             break
         case GET_ALBUM_DETAIL:
             return {...state, albumDetailData}
+            break
+        case CLEAR_DATA:
+            return {...state, playListDetail, albumDetailData}
             break
 
         default:
