@@ -11,6 +11,9 @@ import HomeSinger from 'components/home/HomeSinger'
 import PlayList from 'components/playlist/PlayList'
 import Album from 'components/album/Album'
 
+import PlaylistDetail from 'components/detail/PlaylistDetail'
+import AlbumDetail from 'components/detail/AlbumDetail'
+
 export default class RouterIndex extends Component {
   render() {
     // exact: 加上这个属性，那么就只会匹配相应组件
@@ -25,6 +28,9 @@ export default class RouterIndex extends Component {
 
                     <Route path="/playlist" component={PlayList} />
                     <Route path="/album" component={Album} />
+
+                    <Route path="/playlist-detail/:id" component={PlaylistDetail} />
+                    <Route path="/album-detail/:id" component={AlbumDetail} />
                 </Switch>
             </AutomaticToTop>
         </Router>

@@ -24,7 +24,7 @@ class HomeSong extends Component {
                 id: 'new_song',
                 nav: 'song'
             }}>
-                <ul className="list">
+                <ul className="song-list">
                     {
                         songs.length ? songs.map(song => {
                             return (
@@ -36,7 +36,7 @@ class HomeSong extends Component {
                                             )
                                         })
                                     } - {song.name}
-                                </a></li>
+                                </a>{song.alias.length ? <p>{song.alias}</p> : null}</li>
                             )
                         }) : null
                     }

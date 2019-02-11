@@ -28,11 +28,11 @@ class HomeRank extends Component {
                     {
                         ranks.length ? ranks.map(rank => {
                             return (
-                                <li key={rank.id}><a href="#">
+                                <li key={rank.id}><Link to={`/playlist-detail/${rank.id}`}>
                                     <img src={rank.coverImgUrl + '?param=400y400'} />
                                     <p>{rank.name}</p>
                                     <i className="icon-keyboard_arrow_right"></i>
-                                </a></li>
+                                </Link></li>
                             )
                         }) : null
                     }

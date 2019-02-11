@@ -79,9 +79,9 @@ class HomeRecommend extends Component {
                                                 <i className="icon-headset"></i>
                                                 <em>{playCount}</em>
                                             </span>
-                                            <a href="#" className="mask"></a>
+                                            <Link to={`/playlist-detail/${play.id}`} className="mask"></Link>
                                         </div>
-                                        <p className="desc">{play.name}</p>
+                                        <p className="desc"><Link to={`/playlist-detail/${play.id}`}>{play.name}</Link></p>
                                     </li>
                                 )
                             }) : null
@@ -103,9 +103,9 @@ class HomeRecommend extends Component {
                                     <li key={play.id}>
                                         <div className="pic">
                                             <img src={play.picUrl + '?param=400y400'} />
-                                            <a href="#" className="mask"></a>
+                                            <Link to={`/album-detail/${play.id}`} className="mask"></Link>
                                         </div>
-                                        <p className="desc">{play.name}</p>
+                                        <p className="desc"><Link to={`/album-detail/${play.id}`}>{play.name}</Link></p>
                                     </li>
                                 )
                             }) : null
