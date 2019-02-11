@@ -7,7 +7,7 @@ export default class Home extends Component {
         
         return (
             <div id={id}>
-                <div id="home_header"></div>
+                <div id="home_header"><img src={require('common/images/logo.png')} /></div>
                 <ul id="home_nav">
                     <li className={nav === 'recommend' ? 'active' : ''}><Link to="/">个性推荐</Link></li>
                     <li className={nav === 'song' ? 'active' : ''}><Link to="/newsong">新歌</Link></li>

@@ -40,10 +40,16 @@ export default class HomeSinger extends Component {
                             let mb = (key === 5001 || key === 1003 || key === 2003 ||  key === 6003 ||  key === 7003 ||  key === 4003) ? 'mb' : '' 
                             
                             return (
-                                <li key={key} className={mb}><Link to={`/singer-list/${key}`}>
-                                    <span>{val}</span>
-                                    <i className="icon-keyboard_arrow_right"></i>
-                                </Link></li>            
+                                <li key={key} className={mb}>
+                                    <Link 
+                                        to={{
+                                            pathname: `/singer-list/${key}`, 
+                                            query: {title: val}
+                                        }}>
+                                        <span>{val}</span>
+                                        <i className="icon-keyboard_arrow_right"></i>
+                                    </Link>
+                                </li>
                             )
                         })
                     }

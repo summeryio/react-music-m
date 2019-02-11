@@ -98,16 +98,15 @@ button, input {
 
 // =============模块=============
 #header {
-	position: relative;
-	height: .96rem;
-	line-height: .96rem;
+	height: .8rem;
+	line-height: .8rem;
 	color: #fff;
 	background-color: #e9203d;
 	
 	i {
 		position: absolute;
 		left: .2rem;
-		top: .18rem;
+		top: .1rem;
 		font-size: .64rem;
 	}
 	p {
@@ -165,8 +164,13 @@ button, input {
 // =============首页=============
 // 个性推荐
 #home_header {
-	height: .96rem;
+	height: .8rem;
+	text-align: center;
 	background-color: #e9203d;
+
+	img {
+		display: inline-block;
+	}
 }
 #home_nav {
 	overflow: hidden;
@@ -429,5 +433,55 @@ button, input {
 				font-size: .48rem;
 			}
 		}
+	}
+}
+#singer_list {
+	.list {
+		margin: 0 .2rem;
+		
+		li {
+			padding: .2rem 0;
+			border-bottom: 1px solid #d9d9d9;
+			font-size: .28rem;
+		}
+		a {
+			display: flex;
+			align-items: center;
+			line-height: .36rem;
+		}
+		img {
+			width: 1.3rem;
+			height: 1.3rem;
+		}
+		span {
+			padding-left: .2rem;
+			flex: 1;
+		}
+		i {
+			font-size: .4rem;
+			color: #b0b0b0;
+		}
+	}
+}
+#singer_detail {
+	.cont {
+		height: 5.2rem;
+	}
+	.play {
+		display: flex;
+		height: 1rem;
+		padding: .26rem;
+		line-height: .48rem;
+		justify-content: space-between;
+		border-bottom: 1px solid #e9203d;
+		color: #e9203d;
+
+		i {
+			font-size: .48rem;
+		}
+	}
+	img {
+		width: 100%;
+		height: 5.2rem;
 	}
 }
