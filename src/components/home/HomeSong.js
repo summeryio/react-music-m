@@ -29,22 +29,22 @@ class HomeSong extends Component {
                 {
                     songs.length ? (
                         <ul className="song-list">
-                        {
-                            songs.map(song => {
-                                return (
-                                    <li key={song.id}><a href="#">
-                                        {
-                                            song.artists.map((artist, a) => {
-                                                return (
-                                                    <span key={artist.id}>{artist.name}{a === song.artists.length - 1 ? '' : '、'}</span>
-                                                )
-                                            })
-                                        } - {song.name}
-                                    </a>{song.alias.length ? <p>{song.alias}</p> : null}</li>
-                                )
-                            })
-                        }
-                    </ul>
+                            {
+                                songs.map(song => {
+                                    return (
+                                        <li key={song.id}><a href="#">
+                                            {
+                                                song.ar.map((artist, a) => {
+                                                    return (
+                                                        <span key={artist.id + a}>{artist.name}{a === song.ar.length - 1 ? '' : '、'}</span>
+                                                    )
+                                                })
+                                            } - {song.name}
+                                        </a>{song.alia.length ? <p>{song.alia}</p> : null}</li>
+                                    )
+                                })
+                            }
+                        </ul>
                     ) : <Loading full={true}/>
                 }
             </Home>

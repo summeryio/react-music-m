@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import * as actions from './DetailRedux'
-import Header from 'common/component/Header'
 
 import Loading from 'common/component/Loading'
 import {formatDateYMD} from 'common/js/util'
@@ -24,7 +23,16 @@ class PlaylistDetail extends Component {
 
         return (
             <div id="playlist_detail">
-                <Header title="歌单" />
+                <div id="header_title">
+                    <i 
+                        className="icon-keyboard_arrow_left"
+                        onClick={() => {
+                            window.history.back()
+                        }}
+                    ></i>
+                    <p>歌单</p>
+                    <Link to="/" className="icon-home"><img src={require('common/images/icon_home1.png')} /></Link>
+                </div>
                 {
                     loaded ? (
                         <div>
@@ -45,7 +53,7 @@ class PlaylistDetail extends Component {
                             </div>
                             <ul className="song-list">
                                 {
-                                    playlist.tracks.map(song => {
+                                    playlist.tracks.map((song) => {
                                         return (
                                             <li key={song.id}><a href="#">
                                                 {

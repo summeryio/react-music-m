@@ -71,17 +71,17 @@ export const getAlbum = () => (dispatch, getState) => {
 }
 
 export const getSong = () => (dispatch, getState) => {
-    axios.get(`${URL_HEADER}/top/song?type=0`).then((res) => {
+    axios.get(`${URL_HEADER}/playlist/detail?id=3779629`).then((res) => {
         // console.log(res);
 
         if (res.status === HTTP_SUCCESS_CODE) {
-            res.data.data = res.data.data.filter((item, i) => {
-                return i < 30
+            res.data.playlist.tracks = res.data.playlist.tracks.filter((item, i) => {
+                return i < 50
             })
             
             dispatch({
                 type: GET_SONG,
-                songs: res.data.data
+                songs: res.data.playlist.tracks
             })
         }
     }).catch(error => {

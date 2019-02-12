@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import * as actions from './DetailRedux'
-import Header from 'common/component/Header'
 
 import Loading from 'common/component/Loading'
 import {formatDateYMD} from 'common/js/util'
@@ -24,7 +23,16 @@ class AlbumDetail extends Component {
 
         return (
             <div id="album_detail">
-                <Header title="专辑" />
+                <div id="header_title">
+                    <i 
+                        className="icon-keyboard_arrow_left"
+                        onClick={() => {
+                            window.history.back()
+                        }}
+                    ></i>
+                    <p>专辑</p>
+                    <Link to="/" className="icon-home"><img src={require('common/images/icon_home1.png')} /></Link>
+                </div>
                 {
                     loaded ? (
                         <div>
