@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import {HashRouter as Router, Switch, Route, Redirect} from 'react-router-dom'
 
+
+import PublicPlayer from 'common/component/PublicPlayer'
 import AutomaticToTop from 'common/component/AutomaticToTop'
 
 import HomeRecommend from 'components/home/HomeRecommend'
@@ -17,10 +19,14 @@ import AlbumDetail from 'components/detail/AlbumDetail'
 import SingerList from 'components/singer/SingerList'
 import SingerDetail from 'components/singer/SingerDetail'
 
+import Player from 'components/player/Player'
+
 export default class RouterIndex extends Component {
   render() {
     // exact: 加上这个属性，那么就只会匹配相应组件
     return (
+      <div className="app">
+        <PublicPlayer />
         <Router>
             <AutomaticToTop>
                 <Switch>
@@ -37,9 +43,12 @@ export default class RouterIndex extends Component {
 
                     <Route path="/singer-list/:id" component={SingerList} />
                     <Route path="/singer-detail/:id" component={SingerDetail} />
+
+                    <Route path="/player/:id" component={Player} />
                 </Switch>
             </AutomaticToTop>
         </Router>
+      </div>
     )
   }
 }

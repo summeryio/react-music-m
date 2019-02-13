@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {Link} from 'react-router-dom'
 
 export default class SongList extends Component {
     render() {
@@ -14,8 +15,10 @@ export default class SongList extends Component {
                         
                         return (
                             <li key={song.id}>
-                                <a href="#" className="name">{song.name}{song.alia}</a>
-                                <p>{info} - {song.al.name}</p>
+                                <Link to={`/player/${song.id}`} className="name">
+                                    {song.name}{song.alia}
+                                    <p>{info} - {song.al.name}</p>
+                                </Link>
                             </li>
                         )
                     })

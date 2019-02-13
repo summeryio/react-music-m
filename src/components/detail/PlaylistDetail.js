@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import * as actions from './DetailRedux'
 
+import PlayAll from 'common/component/PlayAll'
 import Loading from 'common/component/Loading'
 import Header from 'common/component/Header'
 import SongList from 'common/component/SongList'
@@ -39,10 +40,7 @@ class PlaylistDetail extends Component {
                                         <p>创建时间：{formatDateYMD(playlist.createTime)}</p>
                                     </div>
                                 </div>
-                                <div className="play">
-                                    <span>播放全部</span>
-                                    <i className="icon-playlist_add"></i>
-                                </div>
+                                <PlayAll songs={playlist.tracks} />
                             </div>
                             <SongList songs={playlist.tracks} />
                         </div>
