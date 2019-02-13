@@ -5,6 +5,8 @@ import {connect} from 'react-redux'
 import * as actions from './DetailRedux'
 
 import Loading from 'common/component/Loading'
+import Header from 'common/component/Header'
+import SongList from 'common/component/SongList'
 import {formatDateYMD} from 'common/js/util'
 
 class PlaylistDetail extends Component {
@@ -23,21 +25,12 @@ class PlaylistDetail extends Component {
 
         return (
             <div id="playlist_detail">
-                <div id="header_title">
-                    <i 
-                        className="icon-keyboard_arrow_left"
-                        onClick={() => {
-                            window.history.back()
-                        }}
-                    ></i>
-                    <p>歌单</p>
-                    <Link to="/" className="icon-home"><img src={require('common/images/icon_home1.png')} /></Link>
-                </div>
+                <Header title="歌单"/>
                 {
                     loaded ? (
                         <div>
                             <div className="header">
-                                <div className="bg"><i style={{backgroundImage: `url(${playlist.coverImgUrl})`}}></i></div>
+                                <div className="bg" style={{backgroundImage: `url(${playlist.coverImgUrl})`}}></div>
                                 <div className="cont">
                                     <img src={playlist.coverImgUrl + '?param=400y400'} />
                                     <div className="info">
@@ -51,23 +44,7 @@ class PlaylistDetail extends Component {
                                     <i className="icon-playlist_add"></i>
                                 </div>
                             </div>
-                            <ul className="song-list">
-                                {
-                                    playlist.tracks.map((song) => {
-                                        return (
-                                            <li key={song.id}><a href="#">
-                                                {
-                                                    song.ar.map((artist, a) => {
-                                                        return (
-                                                            <span key={artist.id + a}>{artist.name}{a === song.ar.length - 1 ? '' : '、'}</span>
-                                                        )
-                                                    })
-                                                } - {song.name}
-                                            </a>{song.alia.length ? <p>{song.alia}</p> : null}</li>
-                                        )
-                                    })
-                                }
-                            </ul>
+                            <SongList songs={playlist.tracks} />
                         </div>
                     ) : <Loading full={true}/>
                 }

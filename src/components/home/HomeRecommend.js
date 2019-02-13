@@ -17,7 +17,6 @@ class HomeRecommend extends Component {
     }
     
     componentDidUpdate() {
-        // this.swiper.update()
         this.swiper = new Swiper('.swiper-container', {
             loop: true,
             resistanceRatio: 0,
@@ -33,19 +32,11 @@ class HomeRecommend extends Component {
         getBanner()
         getPlayList()
         getAlbum()
-
-        /* this.swiper = new Swiper('.swiper-container', {
-            loop: true,
-            resistanceRatio: 0,
-            pagination: {
-                el: '.swiper-pagination',
-            },
-        }); */
     }
     
     render() {
         let {banners, playLists, albums} = this.props.home
-
+        
         return (
             <Home {...{
                 id: 'home',

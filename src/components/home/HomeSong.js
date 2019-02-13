@@ -6,6 +6,7 @@ import {connect} from 'react-redux'
 import * as actions from './HomeRedux'
 
 import Loading from 'common/component/Loading'
+import SongList from 'common/component/SongList'
 
 class HomeSong extends Component {
     constructor(props) {
@@ -26,27 +27,7 @@ class HomeSong extends Component {
                 id: 'new_song',
                 nav: 'song'
             }}>
-                {
-                    songs.length ? (
-                        <ul className="song-list">
-                            {
-                                songs.map(song => {
-                                    return (
-                                        <li key={song.id}><a href="#">
-                                            {
-                                                song.ar.map((artist, a) => {
-                                                    return (
-                                                        <span key={artist.id + a}>{artist.name}{a === song.ar.length - 1 ? '' : '、'}</span>
-                                                    )
-                                                })
-                                            } - {song.name}
-                                        </a>{song.alia.length ? <p>{song.alia}</p> : null}</li>
-                                    )
-                                })
-                            }
-                        </ul>
-                    ) : <Loading full={true}/>
-                }
+                {songs.length ? <SongList songs={songs} /> : <Loading full={true}/>}
             </Home>
         )
     }

@@ -3,9 +3,11 @@ import {Link} from 'react-router-dom'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import * as actions from './SingerRedux'
-import Header from 'common/component/Header'
 
+import Header from 'common/component/Header'
 import Loading from 'common/component/Loading'
+import SongList from 'common/component/SongList'
+
 
 class SingerDetail extends Component {
     componentDidMount() {
@@ -29,29 +31,13 @@ class SingerDetail extends Component {
                     loaded ? (
                         <div>
                             <div className="header">
-                            <div className="cont"><img src={artist.picUrl + '?param=1024y520'} /></div>
-                            <div className="play">
-                                <span>播放全部</span>
-                                <i className="icon-playlist_add"></i>
+                                <div className="cont"><img src={artist.picUrl + '?param=1024y520'} /></div>
+                                <div className="play">
+                                    <span>播放全部</span>
+                                    <i className="icon-playlist_add"></i>
+                                </div>
                             </div>
-                        </div>
-                        <ul className="song-list">
-                            {
-                                hotSongs.map(song => {
-                                    return (
-                                        <li key={song.id}><a href="#">
-                                            {
-                                                song.ar.map((artist, a) => {
-                                                    return (
-                                                        <span key={artist.id + a}>{artist.name}{a === song.ar.length - 1 ? '' : '、'}</span>
-                                                    )
-                                                })
-                                            } - {song.name}
-                                        </a>{song.alia.length ? <p>{song.alia}</p> : null}</li>
-                                    )
-                                })
-                            }
-                        </ul>
+                            <SongList songs={hotSongs} />
                         </div>
                     ) : <Loading full={true}/>
                 }
