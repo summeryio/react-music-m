@@ -32,13 +32,21 @@ class PublicPlayer extends Component {
         setPlaying(true)
         getSongDetail(songList[curIndex].id)
     }
+
+    componentDidMount() {
+        let {player} = this.player
+        
+        this.props.playerAction.getPlayerObj(player)
+    }
     
     render() {
         let {currentID, playing} = this.props.player
 
         return (
             <div id="music_audio">
-                <ReactPlayer url={`https://music.163.com/song/media/outer/url?id=${currentID}.mp3`} playing={playing} onEnded={this.musicEnded} />
+                <ReactPlayer url={`https://music.163.com/song/media/outer/url?id=${currentID}.mp3`} playing={playing} onEnded={this.musicEnded} ref={player => {
+                    this.player = player
+                }}/>
             </div>
         )
     }

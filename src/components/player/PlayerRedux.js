@@ -5,13 +5,15 @@ let initialState = {
     currentID: null,
     songDetail: {},
     songList: [],
-    playing: false
+    playing: false,
+    playerObj: {}
 }
 
 const GET_SONG_ID = 'm-music/PlayerRedux/GET_SONG_ID'
 const GET_SONG_DETAIL = 'm-music/PlayerRedux/GET_SONG_DETAIL'
 const GET_SONG_LIST = 'm-music/PlayerRedux/GET_SONG_LIST'
 const SET_PLAYING = 'm-music/PlayerRedux/SET_PLAYING'
+const GET_PLAYER_OBJ = 'm-music/PlayerRedux/GET_PLAYER_OBJ'
 
 
 export const getSongID = (id) => (dispatch, getState) => {
@@ -54,6 +56,13 @@ export const setPlaying = (status) => (dispatch, getState) => {
     })
 }
 
+export const getPlayerObj = (player) => (dispatch, getState) => {
+    dispatch({
+        type: GET_PLAYER_OBJ,
+        playerObj: player
+    })
+}
+
 
 export default function player(state = initialState, action) {
     let {
@@ -61,7 +70,8 @@ export default function player(state = initialState, action) {
         currentID,
         songDetail,
         songList,
-        playing
+        playing,
+        playerObj
     } = action
 
 
@@ -77,6 +87,9 @@ export default function player(state = initialState, action) {
             break
         case SET_PLAYING:
             return {...state, playing}
+            break
+        case GET_PLAYER_OBJ:
+            return {...state, playerObj}
             break
 
         default:

@@ -65,13 +65,13 @@ class Player extends Component {
         getSongID(id)
         setPlaying(true)
 
-
-        let audio = document.querySelector('audio')
+        let {player} = this.props.player.playerObj
+        
         document.addEventListener('DOMContentLoaded', function () {
             function audioAutoPlay() {
-                audio.play();
+                player.play();
                 document.addEventListener("WeixinJSBridgeReady", function () {
-                    audio.play();
+                    player.play();
                 }, false);
             }
             audioAutoPlay();
