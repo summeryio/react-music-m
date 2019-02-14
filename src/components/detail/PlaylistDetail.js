@@ -31,7 +31,7 @@ class PlaylistDetail extends Component {
                     loaded ? (
                         <div>
                             <div className="header">
-                                <div className="bg" style={{backgroundImage: `url(${playlist.coverImgUrl})`}}></div>
+                                <div className="bg" style={{backgroundImage: `url(${playlist.coverImgUrl + '?param=400y400'})`}}></div>
                                 <div className="cont">
                                     <img src={playlist.coverImgUrl + '?param=400y400'} />
                                     <div className="info">

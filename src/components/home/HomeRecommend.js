@@ -17,13 +17,7 @@ class HomeRecommend extends Component {
     }
     
     componentDidUpdate() {
-        this.swiper = new Swiper('.swiper-container', {
-            loop: true,
-            resistanceRatio: 0,
-            pagination: {
-                el: '.swiper-pagination',
-            },
-        });
+        this.swiper.update()
     }
     
     componentDidMount() {
@@ -32,34 +26,48 @@ class HomeRecommend extends Component {
         getBanner()
         getPlayList()
         getAlbum()
+
+        this.swiper = new Swiper('.swiper-container', {
+            resistanceRatio: 0,
+            pagination: {
+                el: '.swiper-pagination',
+            },
+        });
     }
     
     render() {
         let {banners, playLists, albums} = this.props.home
+        let typeObj = {
+            1: 'player',
+            10: 'album-detail',
+            1000: 'playlist-detail'
+        }
         
         return (
             <Home {...{
                 id: 'home',
                 nav: 'recommend'
             }}>
+                <div className="banner swiper-container">
+                    <div className="sliderWrap swiper-wrapper">
+                        {
+                            banners.length
+                            ? banners.map((banner, b) => {
+                                let {targetId, targetType, picUrl} = banner
+                                
+                                return (
+                                    <Link to={`/${typeObj[targetType]}/${targetId}`} className="swiper-slide" key={targetId}>
+                                        <img src={picUrl && picUrl + '?param=1024y400'} />
+                                    </Link>
+                                )
+                            }) : null
+                        }
+                    </div>
+                    <div className="swiper-pagination"></div>
+                </div>
                 {
                     albums.length ? (
                         <div>
-                            <div className="banner swiper-container">
-                                <div className="sliderWrap swiper-wrapper">
-                                    {
-                                        banners.length
-                                        ? banners.map((banner, b) => {
-                                            return (
-                                                <a href="#" className="swiper-slide" key={b}>
-                                                    <img src={banner.picUrl && banner.picUrl + '?param=1024y400'} />
-                                                </a>
-                                            )
-                                        }) : null
-                                    }
-                                </div>
-                                <div className="swiper-pagination"></div>
-                            </div>
                             <div className="playlist home-list">
                                 <div className="title">
                                     <Link to="/playlist">

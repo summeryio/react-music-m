@@ -23,11 +23,9 @@ export const getBanner = () => (dispatch, getState) => {
             res.data.banners = res.data.banners.filter(banner => {
                 let type = parseInt(banner.targetType)
                 
-                if (type === 3000 || type === 1005) {
-                    return false
+                if (type === 1 || type === 10 || type === 1000) {
+                    return true
                 }
-
-                return true
             })
 
             dispatch({
