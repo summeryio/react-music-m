@@ -18,7 +18,7 @@ class Player extends Component {
     
     playPrev() {
         let {songList, currentID} = this.props.player
-        let {getSongID} = this.props.playerAction
+        let {getSongID, setPlaying} = this.props.playerAction
         let index = 0
         
         if (songList.length && songList.length > 1) {
@@ -33,12 +33,13 @@ class Player extends Component {
 
         let curIndex = index - 1 < 0 ? songList.length - 1 : --index
         getSongID(songList[curIndex].id)
+        setPlaying(true)
         this.props.history.push(`/player/${songList[curIndex].id}`);
     }
     
     playNext() {
         let {songList, currentID} = this.props.player
-        let {getSongID} = this.props.playerAction
+        let {getSongID, setPlaying} = this.props.playerAction
         let index = 0
         
         if (songList.length && songList.length > 1) {
@@ -53,6 +54,7 @@ class Player extends Component {
 
         let curIndex = index + 1 > songList.length - 1 ? 0 : ++index
         getSongID(songList[curIndex].id)
+        setPlaying(true)
         this.props.history.push(`/player/${songList[curIndex].id}`);
     }
     
@@ -65,12 +67,10 @@ class Player extends Component {
     }
     
     render() {
-        let {songDetail, playing, songList} = this.props.player
+        let {songDetail, playing} = this.props.player
         let loaded = songDetail.code === 200
         let song = loaded ? songDetail.songs[0] : {}
         let songAl = loaded ? song.al : {}
-
-        // 下拉列表那里，判断一下如果songList没有数据，那么使用songDetail
 
         return (
             <div id="music_player">
@@ -78,7 +78,7 @@ class Player extends Component {
                 <div className="home"><Link to="/"><img src={require('common/images/icon_home.png')} /></Link></div>
                 <div className="play">
                     <div className="play-border">
-                        <div className="play-pic">
+                        <div className={`play-pic ${playing ? '' : 'paused'}`}>
                             <div className="wrapper">
                                 <img src={songAl.picUrl && songAl.picUrl + '?param=400y400'} />
                             </div>
@@ -104,7 +104,7 @@ class Player extends Component {
                     <i className="icon-next"
                         onClick={this.playNext}
                     ></i>
-                    <i className="icon-list"></i>
+                    {/* <i className="icon-list"></i> */}
                 </div>
             </div>
         )

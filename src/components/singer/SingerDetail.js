@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import * as actions from './SingerRedux'
 
+import PlayAll from 'common/component/PlayAll'
 import Header from 'common/component/Header'
 import Loading from 'common/component/Loading'
 import SongList from 'common/component/SongList'
@@ -32,10 +33,7 @@ class SingerDetail extends Component {
                         <div>
                             <div className="header">
                                 <div className="cont"><img src={artist.picUrl + '?param=1024y520'} /></div>
-                                <div className="play">
-                                    <span>播放全部</span>
-                                    <i className="icon-playlist_add"></i>
-                                </div>
+                                <PlayAll songs={artistData.hotSongs} />
                             </div>
                             <SongList songs={hotSongs} />
                         </div>

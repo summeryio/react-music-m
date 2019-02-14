@@ -63,7 +63,7 @@ img {
     vertical-align: top;
 }
 html {
-    font-size: 13.333333vw;
+	font-size: 13.333333vw;
 }
 html, body {
 	width: 100%;
@@ -182,12 +182,22 @@ button, input {
 // =============首页=============
 // 个性推荐
 #home_header {
+	position: relative;
 	height: .8rem;
 	text-align: center;
 	background-color: #e9203d;
 
 	img {
 		display: inline-block;
+	}
+	.go-player {
+		position: absolute;
+		right: .2rem;
+		top: .1rem;
+		width: .6rem;
+		height: .6rem;
+		background: url(../images/go_player.png) no-repeat;
+		background-size: cover;
 	}
 }
 #home_nav {
@@ -554,6 +564,7 @@ button, input {
 
 		i {
 			font-size: .48rem;
+			color: #e9203d;
 		}
 	}
 	.header img {
@@ -646,6 +657,10 @@ button, input {
 		width: 5.92rem;
 		height: 5.92rem;
 		animation: circling 20s infinite linear;
+
+		&.paused {
+			animation-play-state: paused;
+		}
 		
 		&:after {
 			content: '';
@@ -683,7 +698,7 @@ button, input {
 		background-size: contain;
 	}
 	.info {
-		margin-top: .4rem;
+		margin-top: 1rem;
 		text-align: center;
 		color: #fff;
 		line-height: .4rem;
@@ -694,14 +709,46 @@ button, input {
 		p {}
 	}
 	.operation {
+		position: absolute;
+		bottom: 20px;
 		display: flex;
-		margin-top: 1rem;
-		padding: 0 1rem;
+		width: 90%;
+		margin: 0 5%;
 		justify-content: space-between;
 
 		i {
 			font-size: 1rem;
 			color: rgba(255, 255, 255, .8);
+		}
+	}
+
+	@media screen and (min-width: 414px) {
+		.play {
+			padding-top: 70px;
+		}
+		.play-border {
+			width: 342px;
+			height: 342px;
+		}
+		.play-border:before {
+			left: 150px;
+			width: 110px;
+			height: 157px;
+			top: -70px;
+		}
+		.play-pic {
+			width: 326px;
+			height: 326px;
+
+			.wrapper {
+				width: 212px;
+				height: 212px;
+				margin: -106px 0 0 -106px;
+			}
+		}
+		.play-light {
+			width: 326px;
+			height: 326px;
 		}
 	}
 }

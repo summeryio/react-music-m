@@ -6,12 +6,39 @@ import * as actions from 'components/player/PlayerRedux'
 import ReactPlayer from 'react-player'
 
 class PublicPlayer extends Component {
+    constructor(props) {
+        super(props)
+        
+        this.musicEnded = this.musicEnded.bind(this)
+    }
+    
+    musicEnded() {
+        let {songList, currentID} = this.props.player
+        let {getSongID, setPlaying, getSongDetail} = this.props.playerAction
+        let index = 0
+        
+        if (songList.length && songList.length > 1) {
+            songList.forEach((song, i) => {
+                if (currentID === song.id) {
+                    index = i
+                }
+            })
+        } else {
+            return
+        }
+
+        let curIndex = index + 1 > songList.length - 1 ? 0 : ++index
+        getSongID(songList[curIndex].id)
+        setPlaying(true)
+        getSongDetail(songList[curIndex].id)
+    }
+    
     render() {
-        let {currentID, songList, playing} = this.props.player
+        let {currentID, playing} = this.props.player
 
         return (
             <div id="music_audio">
-                <ReactPlayer url={`https://music.163.com/song/media/outer/url?id=${currentID}.mp3`} playing={playing} />
+                <ReactPlayer url={`https://music.163.com/song/media/outer/url?id=${currentID}.mp3`} playing={playing} onEnded={this.musicEnded} />
             </div>
         )
     }
