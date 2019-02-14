@@ -8,6 +8,7 @@ import App from './App'
 
 import 'common/css/icon-font.css'
 import 'common/css/style.scss'
+import 'common/js/weixin_font.js'
 
 
 const store = configureStore()

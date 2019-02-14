@@ -9,6 +9,7 @@ class PublicPlayer extends Component {
     constructor(props) {
         super(props)
         
+        this.player = null
         this.musicEnded = this.musicEnded.bind(this)
     }
     
@@ -36,7 +37,17 @@ class PublicPlayer extends Component {
     componentDidMount() {
         let {player} = this.player
         
-        this.props.playerAction.getPlayerObj(player)
+        this.props.playerAction.getPlayerObj(this.player)
+        
+        document.addEventListener('DOMContentLoaded', function () {
+            function audioAutoPlay() {
+                player.player.play();
+                document.addEventListener("WeixinJSBridgeReady", function () {
+                    player.player.play();
+                }, false);
+            }
+            audioAutoPlay();
+        })
     }
     
     render() {

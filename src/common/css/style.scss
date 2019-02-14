@@ -52,12 +52,9 @@ a {
 a, a:focus {
 	outline: none;
 }
-a:active {
-	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-input, a {
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    -webkit-appearance: none;
+a,b,blockquote,body,button,caption,dd,del,div,dl,dt,em,fieldset,figure,form,h1,h2,h3,h4,h5,h6,hr,html,i,ins,legend,li,menu,ol,p,pre,s,span,strong,table,td,textarea,th,u,ul {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-user-select: none
 }
 img {
     vertical-align: top;
@@ -72,7 +69,7 @@ html, body {
 body {
 	font-family: 'Microsoft YaHei', "SF Pro SC","SF Pro Display","SF Pro Icons","PingFang SC","Helvetica Neue","Helvetica","Arial",sans-serif;
 	font-size: .3rem;
-	-webkit-text-size-adjust: none;
+	text-size-adjust: 100% !important; // 禁止微信放大字体
 	background-color: #fcfcfd;
 }
 button, input {
@@ -157,7 +154,7 @@ button, input {
 	
 	li {
 		padding: .2rem 0;
-		border-bottom: 1px solid #d9d9d9;
+		border-bottom: 1px solid rgba(0, 0, 0, .05);
 	}
 	.name {
 		overflow: hidden;
@@ -324,10 +321,6 @@ button, input {
 		}
 	}
 }
-
-// 新歌
-#new_song {}
-
 // 榜单
 #rank {
 	.list {

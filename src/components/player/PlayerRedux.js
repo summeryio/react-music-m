@@ -45,8 +45,6 @@ export const getSongList = (songs) => (dispatch, getState) => {
         type: GET_SONG_LIST,
         songList: songs
     })
-
-    dispatch(setPlaying(true))
 }
 
 export const setPlaying = (status) => (dispatch, getState) => {

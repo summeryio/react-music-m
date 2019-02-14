@@ -57,6 +57,22 @@ class Player extends Component {
         setPlaying(true)
         this.props.history.push(`/player/${songList[curIndex].id}`);
     }
+
+    /* componentWillReceiveProps(nextProps) {
+        let {player} = nextProps.player.playerObj
+
+        if (nextProps.player.currentID) {
+            document.addEventListener('DOMContentLoaded', function () {
+                function audioAutoPlay() {
+                    player.player.play();
+                    document.addEventListener("WeixinJSBridgeReady", function () {
+                        player.player.play();
+                    }, false);
+                }
+                audioAutoPlay();
+            })
+        }
+    } */
     
     componentDidMount() {
         let {id} = this.props.match.params
@@ -64,18 +80,6 @@ class Player extends Component {
 
         getSongID(id)
         setPlaying(true)
-
-        let {player} = this.props.player.playerObj
-        
-        document.addEventListener('DOMContentLoaded', function () {
-            function audioAutoPlay() {
-                player.play();
-                document.addEventListener("WeixinJSBridgeReady", function () {
-                    player.play();
-                }, false);
-            }
-            audioAutoPlay();
-        })
     }
     
     render() {
