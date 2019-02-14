@@ -1,3 +1,3 @@
 
-export const URL_HEADER = 'http://summerstarry.com:3000'
+export const URL_HEADER = 'http://192.168.42.12:3000'
 export const HTTP_SUCCESS_CODE = 200

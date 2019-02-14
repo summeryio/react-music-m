@@ -64,6 +64,18 @@ class Player extends Component {
 
         getSongID(id)
         setPlaying(true)
+
+
+        let audio = document.querySelector('audio')
+        document.addEventListener('DOMContentLoaded', function () {
+            function audioAutoPlay() {
+                audio.play();
+                document.addEventListener("WeixinJSBridgeReady", function () {
+                    audio.play();
+                }, false);
+            }
+            audioAutoPlay();
+        })
     }
     
     render() {

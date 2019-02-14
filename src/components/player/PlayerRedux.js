@@ -5,7 +5,7 @@ let initialState = {
     currentID: null,
     songDetail: {},
     songList: [],
-    playing: true
+    playing: false
 }
 
 const GET_SONG_ID = 'm-music/PlayerRedux/GET_SONG_ID'
