@@ -9,11 +9,11 @@ let initialState = {
     ranks: []
 }
 
-const GET_BANNER = 'm-music/HomeRedux/GET_BANNER'
-const GET_PLAY_LIST = 'm-music/HomeRedux/GET_PLAY_LIST'
-const GET_ALBUM = 'm-music/HomeRedux/GET_ALBUM'
-const GET_SONG = 'm-music/HomeRedux/GET_SONG'
-const GET_RANK = 'm-music/HomeRedux/GET_RANK'
+const GET_BANNER = 'm-music/home/HomeRedux/GET_BANNER'
+const GET_PLAY_LIST = 'm-music/home/HomeRedux/GET_PLAY_LIST'
+const GET_ALBUM = 'm-music/home/HomeRedux/GET_ALBUM'
+const GET_SONG = 'm-music/home/HomeRedux/GET_SONG'
+const GET_RANK = 'm-music/home/HomeRedux/GET_RANK'
 
 export const getBanner = () => (dispatch, getState) => {
     axios.get(`${URL_HEADER}/banner`).then((res) => {

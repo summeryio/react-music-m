@@ -9,11 +9,11 @@ let initialState = {
     playerObj: {}
 }
 
-const GET_SONG_ID = 'm-music/PlayerRedux/GET_SONG_ID'
-const GET_SONG_DETAIL = 'm-music/PlayerRedux/GET_SONG_DETAIL'
-const GET_SONG_LIST = 'm-music/PlayerRedux/GET_SONG_LIST'
-const SET_PLAYING = 'm-music/PlayerRedux/SET_PLAYING'
-const GET_PLAYER_OBJ = 'm-music/PlayerRedux/GET_PLAYER_OBJ'
+const GET_SONG_ID = 'm-music/player/PlayerRedux/GET_SONG_ID'
+const GET_SONG_DETAIL = 'm-music/player/PlayerRedux/GET_SONG_DETAIL'
+const GET_SONG_LIST = 'm-music/player/PlayerRedux/GET_SONG_LIST'
+const SET_PLAYING = 'm-music/player/PlayerRedux/SET_PLAYING'
+const GET_PLAYER_OBJ = 'm-music/player/PlayerRedux/GET_PLAYER_OBJ'
 
 
 export const getSongID = (id) => (dispatch, getState) => {

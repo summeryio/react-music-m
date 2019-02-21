@@ -6,8 +6,8 @@ let initialState = {
     playListData: {}
 }
 
-const GET_PLSY_LIST = 'm-music/PlayListRedux/GET_PLSY_LIST'
-const CLEAR_PLAYLIST = 'm-music/PlayListRedux/CLEAR_PLAYLIST'
+const GET_PLSY_LIST = 'm-music/playlist/PlayListRedux/GET_PLSY_LIST'
+const CLEAR_PLAYLIST = 'm-music/playlist/PlayListRedux/CLEAR_PLAYLIST'
 
 export const getPlayList = (order, cat, nowPage) => (dispatch, getState) => {
     let {playlists} = getState().playlist

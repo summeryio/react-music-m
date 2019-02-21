@@ -6,9 +6,9 @@ let initialState = {
     albumDetailData: {}
 }
 
-const GET_PLAY_DETAIL = 'm-music/PlaylistDetail/GET_PLAY_DETAIL'
-const GET_ALBUM_DETAIL = 'm-music/PlaylistDetail/GET_ALBUM_DETAIL'
-const CLEAR_DATA = 'm-music/PlaylistDetail/CLEAR_DATA'
+const GET_PLAY_DETAIL = 'm-music/detail/DetailRedux/GET_PLAY_DETAIL'
+const GET_ALBUM_DETAIL = 'm-music/detail/DetailRedux/GET_ALBUM_DETAIL'
+const CLEAR_DATA = 'm-music/detail/DetailRedux/CLEAR_DATA'
 
 
 export const getPlayListDetail = (id) => (dispatch, getState) => {

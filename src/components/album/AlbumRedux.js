@@ -6,8 +6,8 @@ let initialState = {
     albumData: {}
 }
 
-const GET_ALBUM_DATA = 'm-music/AlbumRedux/GET_ALBUM_DATA'
-const CLEAR_PLAYLIST = 'm-music/AlbumRedux/CLEAR_PLAYLIST'
+const GET_ALBUM_DATA = 'm-music/album/AlbumRedux/GET_ALBUM_DATA'
+const CLEAR_PLAYLIST = 'm-music/album/AlbumRedux/CLEAR_PLAYLIST'
 
 export const getAlbumData = (page) => (dispatch, getState) => {
     let {albums} = getState().album
