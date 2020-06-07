@@ -42,6 +42,7 @@ class HomeRecommend extends Component {
             10: 'album-detail',
             1000: 'playlist-detail'
         }
+        console.log(banners);
         
         return (
             <Home {...{
@@ -53,11 +54,11 @@ class HomeRecommend extends Component {
                         {
                             banners.length
                             ? banners.map((banner, b) => {
-                                let {targetId, targetType, picUrl} = banner
+                                let {targetId, targetType, imageUrl} = banner
                                 
                                 return (
                                     <Link to={`/${typeObj[targetType]}/${targetId}`} className="swiper-slide" key={targetId}>
-                                        <img src={picUrl && picUrl + '?param=1024y400'} />
+                                        <img src={imageUrl && imageUrl + '?param=1024y400'} />
                                     </Link>
                                 )
                             }) : null
